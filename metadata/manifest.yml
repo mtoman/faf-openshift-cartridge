@@ -1,22 +1,20 @@
 ---
 Name: faf
 Cartridge-Short-Name: FAF
-Display-Name: FAF 0.9-1.20131113
+Display-Name: FAF 0.9
 Description: A cartridge providing FAF stack
-Version: '0.9-1.20131113'
-Versions:
-- '0.9-1.20131113'
+Version: '0.9'
 License: GPLv3
 Source-Url: https://github.com/mtoman/faf-openshift-cartridge.git
-Vendor: ABRT Team
+Vendor: abrt
 Cartridge-Version: 0.0.1
-Cartridge-Vendor: abrt_team
+Cartridge-Vendor: abrt
 Categories:
-- embedded
-- service
+  - embedded
+  - service
 Provides:
-- "faf-0.9-1.20131113"
-- "faf"
+  - faf-0.9
+  - "faf"
 Cart-Data:
   - Key: OPENSHIFT_FAF_ROOT
     Type: environment
