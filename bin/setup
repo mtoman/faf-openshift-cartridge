@@ -1,0 +1,13 @@
+#!/bin/bash -e
+source "$OPENSHIFT_CARTRIDGE_SDK_BASH"
+
+ROOT_IMAGE_FILENAME="root.tar.xz"
+ROOT_IMAGE_LOCATION="http://mtoman.fedorapeople.org/faf/openshift"
+
+cd "$OPENSHIFT_FAF_DIR"
+wget "$ROOT_IMAGE_LOCATION/$ROOT_IMAGE_FILENAME"
+tar xJf "$ROOT_IMAGE_FILENAME"
+rm -f "$ROOT_IMAGE_FILENAME"
+cd -
+
+client_result "FAF image has been deployed successfully"

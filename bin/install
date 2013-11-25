@@ -1,0 +1,23 @@
+#!/bin/bash -e
+source "$OPENSHIFT_CARTRIDGE_SDK_BASH"
+
+if [ "x$OPENSHIFT_POSTGRESQL_DB_URL" = "x" ]
+then
+  echo "OPENSHIFT_POSTGRESQL_DB_URL is not set or empty. Did you install the PostgreSQL cartridge?" >&2
+  exit 1
+fi
+
+sed -ie "s,postgresql:///faf,$OPENSHIFT_POSTGRESQL_DB_URL," "$FAF_CONFIG_FILE"
+sed -ie "s,/etc/faf/plugins,$OPENSHIFT_FAF_ROOT/etc/faf/plugins," "$FAF_CONFIG_FILE"
+sed -ie "s,/etc/faf/templates,$OPENSHIFT_FAF_ROOT/etc/faf/templates," "$FAF_CONFIG_FILE"
+sed -ie "s,/var/spool/faf,$OPENSHIFT_FAF_ROOT/var/spool/faf," "$FAF_CONFIG_FILE"
+sed -ie "s,/var/spool/faf,$OPENSHIFT_FAF_ROOT/var/spool/faf," "$OPENSHIFT_FAF_ROOT/etc/faf/plugins/web.conf"
+sed -ie "s,urlprefix = /faf,urlprefix =," "$OPENSHIFT_FAF_ROOT/etc/faf/plugins/web.conf"
+
+faf init -vd >> "$OPENSHIFT_FAF_ROOT/var/log/faf/init.log" 2>&1
+
+client_result "FAF storage has been initialized successfully"
+client_result ""
+client_result "\$OPENSHIFT_FAF_ROOT points to the root of FAF's directory structure"
+client_result "\$FAF_CONFIG_FILE points to FAF's main configuration file"
+client_result "Full logs can be found in the \"\$OPENSHIFT_FAF_ROOT/var/log/faf\" directory"

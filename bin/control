@@ -1,0 +1,45 @@
+#!/bin/bash -eu
+source "$OPENSHIFT_CARTRIDGE_SDK_BASH"
+
+function start()
+{
+  client_result "Starting FAF Cartridge"
+}
+
+function stop()
+{
+  client_result "Stopping FAF Cartridge"
+}
+
+function restart()
+{
+  client_result "Restarting FAF Cartridge"
+
+  stop
+  start
+}
+
+function status()
+{
+  client_result "Not yet implemented"
+}
+
+function reload()
+{
+  client_result "Not yet implemented"
+}
+
+function tidy()
+{
+  client_result "Nothing to tidy"
+}
+
+case "$1" in
+  start)   start ;;
+  stop)    stop ;;
+  restart) restart ;;
+  status)  status ;;
+  reload)  reload ;;
+  tidy)    tidy ;;
+  *)       exit 0
+esac
