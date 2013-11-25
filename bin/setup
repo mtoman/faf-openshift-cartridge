@@ -1,4 +1,5 @@
 #!/bin/bash -e
+exit 0
 source "$OPENSHIFT_CARTRIDGE_SDK_BASH"
 
 ROOT_IMAGE_FILENAME="root.tar.xz"
