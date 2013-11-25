@@ -7,7 +7,7 @@ Version: '0.9-1.20131113'
 Versions:
 - '0.9-1.20131113'
 License: GPLv3
-Source-Url: http://mtoman.fedorapeople.org/faf/openshift/cartridge.zip
+Source-Url: https://github.com/mtoman/faf-openshift-cartridge.git
 Vendor: ABRT Team
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: abrt_team
