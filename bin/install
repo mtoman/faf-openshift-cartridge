@@ -14,9 +14,17 @@ sed -ie "s,/var/spool/faf,$OPENSHIFT_FAF_ROOT/var/spool/faf," "$FAF_CONFIG_FILE"
 sed -ie "s,/var/spool/faf,$OPENSHIFT_FAF_ROOT/var/spool/faf," "$OPENSHIFT_FAF_ROOT/etc/faf/plugins/web.conf"
 sed -ie "s,urlprefix = /faf,urlprefix =," "$OPENSHIFT_FAF_ROOT/etc/faf/plugins/web.conf"
 
-faf init -vd >> "$OPENSHIFT_FAF_ROOT/var/log/faf/init.log" 2>&1
+LOG=$(faf init -vd 2>&1 | tee "$OPENSHIFT_FAF_ROOT/var/log/faf/init.log")
+if [ "$?" != "0" ]
+then
+  client_result "FAF storage has failed to initialize"
+  client_result $LOG
+  client_result ""
+  client_result "You need to run \"faf init\" manually"
+else
+  client_result "FAF storage has been initialized successfully"
+fi
 
-client_result "FAF storage has been initialized successfully"
 client_result ""
 client_result "\$OPENSHIFT_FAF_ROOT points to the root of FAF's directory structure"
 client_result "\$FAF_CONFIG_FILE points to FAF's main configuration file"
