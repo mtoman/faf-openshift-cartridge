@@ -12,6 +12,7 @@ Vendor: ABRT Team
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: abrt_team
 Categories:
+- embedded
 - service
 Provides:
 - "faf-0.9-1.20131113"
